@@ -30,3 +30,15 @@ class Review(db.Model):
 
     def __str__(self):
         return f"{self.user_name}: {self.review_date:%x}"
+
+class SoRandom(db.Model):
+    __tablename__ = 'sorandom'
+    id = Column(Integer, primary_key=True)
+    one = Column(Integer, ForeignKey('restaurant.id', ondelete="CASCADE"))
+    two = Column(String(30))
+    three = Column(Integer)
+    four = Column(String(500))
+    five = Column(DateTime)
+
+    def __str__(self):
+        return f"{self.one}: {self.two}"

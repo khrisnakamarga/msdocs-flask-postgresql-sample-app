@@ -32,7 +32,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # The import must be done after db initialization due to circular import issue
-from models import Restaurant, Review
+from models import Restaurant, Review, SoRandom
 
 @app.route('/', methods=['GET'])
 def index():
@@ -86,13 +86,13 @@ def add_review(id):
             'error_message': "Error adding review",
         })
     else:
-        review = Review()
-        review.restaurant = id
-        review.review_date = datetime.now()
-        review.user_name = user_name
-        review.rating = int(rating)
-        review.review_text = review_text
-        db.session.add(review)
+        sorandom = SoRandom()
+        sorandom.two = id
+        sorandom.five = datetime.now()
+        sorandom.one = user_name
+        sorandom.three = int(rating)
+        sorandom.four = review_text
+        db.session.add(sorandom)
         db.session.commit()
 
     return redirect(url_for('details', id=id))
